@@ -1,8 +1,8 @@
 {
-    "name": "nextjs-15-starter-shadcn",
+    "name": "sleekreply",
     "version": "1.0.0",
     "private": true,
-    "website": "https://nextjs-15-starter-shadcn.vercel.app/",
+    "website": "https://sleekreply.com/",
     "license": "MIT",
     "scripts": {
         "dev": "next dev --turbopack",
