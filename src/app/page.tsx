@@ -1,12 +1,7 @@
-import HomePage from '@/app/bots/HomePage';
+import { redirect } from 'next/navigation';
 
-/**
- * The main page component that renders the HomePage component.
- *
- * @returns {JSX.Element} The rendered HomePage component.
- */
 const Page = () => {
-    return <HomePage />;
+    redirect('/dashboard');
 };
 
 export default Page;

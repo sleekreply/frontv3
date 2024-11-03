@@ -2,10 +2,8 @@ import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-
 import { ThemeProvider } from 'next-themes';
 
-import NavigationBar from '@/app/bots/NavigationBar';
 import '@/app/globals.css';
 
 const geistSans = localFont({
@@ -30,10 +28,9 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
         // ? https://react.dev/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors
         <html suppressHydrationWarning lang='en'>
             <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}>
-                <ThemeProvider attribute='class'>
-                    <NavigationBar />
-                    {children}
-                </ThemeProvider>
+            <ThemeProvider attribute='class'>
+                {children}
+            </ThemeProvider>
             </body>
         </html>
     );
