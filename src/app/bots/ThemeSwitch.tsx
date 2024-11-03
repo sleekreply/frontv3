@@ -53,7 +53,6 @@ const ThemeSwitch: React.FC = () => {
                             setTheme(data.value);
                         }}>
                         {data.iconSvg}
-                        <h3 className='hidden sm:block'>{data.name}</h3>
                     </button>
                 ))}
             </div>
