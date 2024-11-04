@@ -10,7 +10,7 @@ import {
     SidebarMenuButton,
     SidebarGroupContent
   } from "@/components/ui/sidebar"
-import { Bot, MessageCircleCode } from "lucide-react"
+import { Bot, MessageCircleCode, LogOut } from "lucide-react"
 import ThemeSwitch from "./theme-switch"
 
 const items = [
@@ -50,9 +50,25 @@ export function AppSidebar() {
                 </SidebarGroup>
             </SidebarContent>
         <div className='items-center'>
+        </div>
+        <SidebarGroup>
+            <SidebarGroupLabel>Settings</SidebarGroupLabel>
+            <SidebarGroupContent>
+                <SidebarMenu>
+                    <SidebarMenuItem key='logout'>
+                        <SidebarMenuButton asChild>
+                            <a href='logout'>
+                                <LogOut/>
+                                <span>Logout</span>
+                            </a>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+            </SidebarGroupContent>
+        </SidebarGroup>
         <ThemeSwitch>
         </ThemeSwitch>
-        </div>
+
         <SidebarFooter />
         </Sidebar>
     )
