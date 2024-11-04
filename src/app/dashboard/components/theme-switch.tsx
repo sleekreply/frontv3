@@ -40,7 +40,7 @@ const ThemeSwitch: React.FC = () => {
     useEffect(() => setMounted(true), []);
 
     return (
-        <div className='w-fit'>
+        <div className='w-fit mx-auto'>
             <div className='flex w-auto flex-row justify-center overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-700 sm:flex-row'>
                 {SWITCH_DATA.map((data) => (
                     <button
