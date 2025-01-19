@@ -1,8 +1,8 @@
 
+
 import { cookiesUtil } from '@/lib/cookies';
 import { AuthTokens, LoginRequest } from '@/types/auth';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import { HttpClient } from '@/lib/http-client';
 
 interface BackendAuthResponse {
     access: string;
@@ -12,13 +12,12 @@ interface BackendAuthResponse {
 export class AuthService {
     static async login(credentials: LoginRequest): Promise<AuthTokens> {
         try {
-            const response = await fetch(`${API_URL}/api/auth/login`, {
+            const response = await HttpClient.fetch('/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(credentials),
-                credentials: 'include'
+                body: JSON.stringify(credentials)
             });
 
             if (!response.ok) {
@@ -28,7 +27,6 @@ export class AuthService {
 
             const backendTokens: BackendAuthResponse = await response.json();
 
-            // Map backend tokens to our format
             const tokens: AuthTokens = {
                 accessToken: backendTokens.access,
                 refreshToken: backendTokens.refresh
@@ -47,5 +45,7 @@ export class AuthService {
 
     static logout() {
         cookiesUtil.clearAuthTokens();
+        window.location.href = '/authentication';
     }
 }
+
