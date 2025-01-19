@@ -1,3 +1,4 @@
+
 import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
@@ -37,3 +38,4 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
 };
 
 export default Layout;
+
