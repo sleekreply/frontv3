@@ -1,7 +1,13 @@
+
 import { cookiesUtil } from '@/lib/cookies';
 import { AuthTokens, LoginRequest } from '@/types/auth';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+interface BackendAuthResponse {
+    access: string;
+    refresh: string;
+}
 
 export class AuthService {
     static async login(credentials: LoginRequest): Promise<AuthTokens> {
@@ -12,19 +18,30 @@ export class AuthService {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(credentials),
-                credentials: 'include' // Important for cookies
+                credentials: 'include'
             });
 
             if (!response.ok) {
-                throw new Error('Login failed');
+                const error = await response.json().catch(() => ({}));
+                throw new Error(error.detail || 'Login failed');
             }
 
-            const tokens = await response.json();
+            const backendTokens: BackendAuthResponse = await response.json();
+
+            // Map backend tokens to our format
+            const tokens: AuthTokens = {
+                accessToken: backendTokens.access,
+                refreshToken: backendTokens.refresh
+            };
+
             cookiesUtil.setAuthTokens(tokens);
 
             return tokens;
         } catch (error) {
-            throw new Error('Login failed');
+            if (error instanceof Error) {
+                throw new Error(`Login failed: ${error.message}`);
+            }
+            throw new Error('Login failed: Unknown error');
         }
     }
 

@@ -1,4 +1,5 @@
 
+
 import { Cookies } from 'react-cookie';
 import { AuthTokens } from '@/types/auth';
 
@@ -8,7 +9,6 @@ export const cookieConfig = {
     path: '/',
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict' as const,
-    httpOnly: true,
     maxAge: 30 * 24 * 60 * 60 // 30 days
 };
 
@@ -23,8 +23,18 @@ export const cookiesUtil = {
         cookies.set(cookieNames.refreshToken, tokens.refreshToken, cookieConfig);
     },
 
+    getAuthTokens(): AuthTokens | null {
+        const accessToken = cookies.get(cookieNames.accessToken);
+        const refreshToken = cookies.get(cookieNames.refreshToken);
+        
+        if (!accessToken || !refreshToken) return null;
+        
+        return { accessToken, refreshToken };
+    },
+
     clearAuthTokens() {
-        cookies.remove(cookieNames.accessToken);
-        cookies.remove(cookieNames.refreshToken);
+        cookies.remove(cookieNames.accessToken, { path: '/' });
+        cookies.remove(cookieNames.refreshToken, { path: '/' });
     }
 };
+
