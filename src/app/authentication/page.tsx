@@ -54,7 +54,7 @@ export default function AuthenticationPage() {
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
-                &ldquo;Unleash the power of AI: Transform your workflows, deploy intelligent chatbots, and gain real-time insights. SleekReply is your all-in-one platform for building the future with LLMs.&rdquo;
+                &ldquo;Experience the Future: Your AI-Powered Trading Assistant.&rdquo;
               </p>
               <footer className="text-sm">Gaston Zarate</footer>
             </blockquote>
