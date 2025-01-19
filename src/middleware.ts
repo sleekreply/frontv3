@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 import { cookieNames } from '@/lib/cookies';
 
 // Rutas que no requieren autenticación
-const publicPaths = ['/authentication', '/api/auth/login'];
+const publicPaths = ['/authentication', '/api/auth/login', '/images'];
 
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
