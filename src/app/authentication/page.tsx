@@ -66,9 +66,6 @@ export default function AuthenticationPage() {
               <h1 className="text-2xl font-semibold tracking-tight">
                 Login
               </h1>
-              <p className="text-sm text-muted-foreground">
-                Enter your email and password
-              </p>
             </div>
             <UserAuthForm />
           </div>
